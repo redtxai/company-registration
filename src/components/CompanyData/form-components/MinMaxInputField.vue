@@ -79,16 +79,16 @@ export default {
       return !this.isFocused
     },
     validateMinMax() {
-      const min = parseInt(this.inputValueMin.match(/\d+/g));
-      const max = parseInt(this.inputValueMax.match(/\d+/g));
+      const min = parseInt(this.inputValueMin.replace(/[^0-9\.]+/g, ''))
+      const max = parseInt(this.inputValueMax.replace(/[^0-9\.]+/g, ''))
       if (!max) {
         return true
       }
-      return !(min < max)
+      return min >= max
     },
     getValueForInput() {
-      const min = parseInt(this.inputValueMin.match(/\d+/g));
-      const max = parseInt(this.inputValueMax.match(/\d+/g));
+      const min = parseFloat(this.inputValueMin.match(/\d+/g));
+      const max = parseFloat(this.inputValueMax.match(/\d+/g));
       if (!max) {
         return '';
       }

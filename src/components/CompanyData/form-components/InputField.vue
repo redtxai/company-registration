@@ -59,9 +59,6 @@ export default {
     };
   },
   created() {
-    if (this.type === "money") {
-      this.masked = true;
-    }
     this.inputValue = this.value;
   },
   methods: {

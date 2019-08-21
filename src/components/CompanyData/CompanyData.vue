@@ -31,7 +31,7 @@
       />
     </section>
     <footer>
-      <button @click="alert('save')">SAVE</button>
+      <button :disabled="validateCompany" @click="saveCompany">SAVE</button>
     </footer>
     <div v-show="showLightBox" class="backdrop" @click="hideTextAreaLightBox">
     </div>
@@ -74,6 +74,11 @@ export default {
       showLightBox: false
     }
   },
+  computed: {
+    validateCompany() {
+      return !this.company.name || !this.company.spendAbility.max
+    }
+  },
   methods: {
     showTextAreaLightBox() {
       this.fakeNotes = this.company.notes
@@ -85,6 +90,9 @@ export default {
     saveNotes() {
       this.company.notes = this.fakeNotes
       this.showLightBox = false
+    },
+    saveCompany() {
+      this.$store.dispatch('setCompany', this.company)
     }
   }
 };
