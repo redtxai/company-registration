@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 import CompanyData from "./components/CompanyData/CompanyData.vue";
+import CompanyTable from "./components/CompanyTable/CompanyTable.vue";
+import CompanyPage from "./components/CompanyPage/CompanyPage.vue";
 
 Vue.use(Router);
 
@@ -18,13 +20,13 @@ export default new Router({
       path: "/company-table",
       name: "company-table",
       meta: { module: 'company-table' },
-      component: CompanyData
+      component: CompanyTable
     },
     {
       path: "/company-page",
       name: "company-page",
       meta: { module: 'company-page' },
-      component: CompanyData
+      component: CompanyPage
     }
   ]
 });

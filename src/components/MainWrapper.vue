@@ -29,8 +29,6 @@ main {
   height: 100vh;
   overflow-y: auto;
   background-color: $main-background;
-  display: flex;
-  flex-direction: column;
 
   header {
     width: 100%;

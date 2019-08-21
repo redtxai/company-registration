@@ -37,6 +37,7 @@ export default {
 
     .main {
       display: flex;
+      height: 600px;
     }
   }
 
