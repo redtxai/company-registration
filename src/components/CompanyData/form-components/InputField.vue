@@ -7,7 +7,7 @@
       v-if="type === 'money'"
       :name="name"
       :id="name"
-      :placeholder="`e.g. ${placeholder}`"
+      :placeholder="`${placeholderPrefix} ${placeholder}`"
       v-model="inputValue"
       v-money="inputValue ? money : null"
       @input="updateValue"
@@ -18,7 +18,7 @@
       :type="type"
       :name="name"
       :id="name"
-      :placeholder="`e.g. ${placeholder}`"
+      :placeholder="`${placeholderPrefix} ${placeholder}`"
       v-model="inputValue"
       @input="updateValue"
     />
@@ -45,6 +45,9 @@ export default {
     },
     placeholder: {
       default: ""
+    },
+    placeholderPrefix: {
+      default: "e.g."
     }
   },
   directives: { money: VMoney },
