@@ -17,7 +17,7 @@
         :name="name"
         :id="name"
         :placeholder="`e.g. $150,000`"
-        v-model.lazy="inputValueMin"
+        v-model="inputValueMin"
         v-money="inputValueMin ? money : null"
         @keypress="avoidMinusKey($event)"
       />
@@ -26,7 +26,7 @@
         :name="name"
         :id="name"
         :placeholder="`e.g. $300,000`"
-        v-model.lazy="inputValueMax"
+        v-model="inputValueMax"
         v-money="inputValueMax ? money : null"
         @keypress="avoidMinusKey($event)"
       />
