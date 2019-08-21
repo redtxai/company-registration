@@ -36,7 +36,6 @@ export default {
     }
 
     .main {
-      width: 100%;
       display: flex;
     }
   }

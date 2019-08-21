@@ -26,7 +26,8 @@ export default {
 
 main {
   width: 100vw;
-  height: 100%;
+  height: 100vh;
+  overflow-y: auto;
   background-color: $main-background;
   display: flex;
   flex-direction: column;
