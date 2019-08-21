@@ -45,8 +45,8 @@ export default {
         name: '',
         spend: '',
         spendAbility: {
-          spendMin: '',
-          spendMax: ''
+          min: '',
+          max: ''
         },
         notes: ''
       }

@@ -11,6 +11,7 @@
       v-model="inputValue"
       v-money="inputValue ? money : null"
       @input="updateValue"
+      @keypress="avoidMinusKey($event)"
     />
     <input
       v-else
@@ -66,6 +67,11 @@ export default {
   methods: {
     updateValue() {
       this.$emit("input", this.inputValue);
+    },
+    avoidMinusKey(evt) {
+      if (evt.keyCode === 45) {
+        evt.preventDefault();
+      }
     }
   }
 };

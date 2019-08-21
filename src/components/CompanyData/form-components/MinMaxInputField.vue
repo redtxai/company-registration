@@ -9,25 +9,28 @@
       :name="name"
       :id="name"
       :placeholder="`e.g. ${placeholder}`"
+      readonly
+      :value="getValueForInput"
     />
     <div class="inputs-container" v-else>
       <input
         :name="name"
         :id="name"
         :placeholder="`e.g. $150,000`"
-        v-model="inputValueMin"
+        v-model.lazy="inputValueMin"
         v-money="inputValueMin ? money : null"
-        @input="updateValue"
+        @keypress="avoidMinusKey($event)"
       />
       <input
         v-if="type === 'money'"
         :name="name"
         :id="name"
-        :placeholder="`e.g. $300,000}`"
-        v-model="inputValueMax"
+        :placeholder="`e.g. $300,000`"
+        v-model.lazy="inputValueMax"
         v-money="inputValueMax ? money : null"
-        @input="updateValue"
+        @keypress="avoidMinusKey($event)"
       />
+      <button :disabled="validateMinMax" @click="updateValue">OK</button>
     </div>
   </div>
 </template>
@@ -74,14 +77,37 @@ export default {
   computed: {
     showInputPlaceHolder() {
       return !this.isFocused
+    },
+    validateMinMax() {
+      const min = parseInt(this.inputValueMin.match(/\d+/g));
+      const max = parseInt(this.inputValueMax.match(/\d+/g));
+      if (!max) {
+        return true
+      }
+      return !(min < max)
+    },
+    getValueForInput() {
+      const min = parseInt(this.inputValueMin.match(/\d+/g));
+      const max = parseInt(this.inputValueMax.match(/\d+/g));
+      if (!max) {
+        return '';
+      }
+      return `${this.inputValueMin} - ${this.inputValueMax}`
     }
   },
   created() {
-    this.spendAbility = this.value;
+    this.inputValueMin = this.value.min;
+    this.inputValueMax = this.value.max;
   },
   methods: {
     updateValue() {
-      // this.$emit("input", this.inputValue);
+      this.isFocused = false
+      this.$emit("input", { min: this.inputValueMin, max: this.inputValueMax });
+    },
+    avoidMinusKey(evt) {
+      if (evt.keyCode === 45) {
+        evt.preventDefault();
+      }
     }
   }
 };
@@ -116,7 +142,12 @@ export default {
     justify-content: space-between;
 
     & > input {
-      width: 47%;
+      width: 42%;
+    }
+
+    button {
+      width: 40px;
+      height: 40px;
     }
   }
 }
