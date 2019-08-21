@@ -74,6 +74,9 @@ export default {
       showLightBox: false
     }
   },
+  created() {
+    this.company = this.$store.getters.getCompany
+  },
   computed: {
     validateCompany() {
       return !this.company.name || !this.company.spendAbility.max
@@ -93,6 +96,7 @@ export default {
     },
     saveCompany() {
       this.$store.dispatch('setCompany', this.company)
+      this.$router.push({ name: 'company-table' })
     }
   }
 };

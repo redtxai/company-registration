@@ -1,23 +1,26 @@
 <template>
   <main>
-    <header>
-
-    </header>
+    <Header/>
     <Home/>
-    <footer>
-
-    </footer>
+    <Footer/>
   </main>
 </template>
 
 <script>
+import Header from "./Header/Header.vue";
 import Home from "./Home/Home.vue";
+import Footer from "./Footer/Footer.vue";
 
 export default {
   name: 'MainWrapper',
   components: {
-    Home
-  }  
+    Header,
+    Home,
+    Footer
+  },
+  created() {
+    this.$store.dispatch('setDefaultState')
+  }
 };
 </script>
 
@@ -29,17 +32,5 @@ main {
   height: 100vh;
   overflow-y: auto;
   background-color: $main-background;
-
-  header {
-    width: 100%;
-    height: 70px;
-    background-color: $header-background;
-  }
-
-  footer {
-    width: 100%;
-    height: 110px;
-    background-color: $footer-background;
-  }
 }
 </style>

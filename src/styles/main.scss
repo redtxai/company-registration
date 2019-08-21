@@ -27,6 +27,12 @@ button {
   font: inherit;
   cursor: pointer;
   outline: inherit;
+
+  &:disabled {
+    cursor: no-drop;
+    background-color: gray;
+    color: #505050;
+  }
 }
 
 input {
